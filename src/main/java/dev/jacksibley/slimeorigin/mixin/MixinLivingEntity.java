@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import virtuoel.pehkui.api.PehkuiConfig;
-import virtuoel.pehkui.api.ScaleType;
+import virtuoel.pehkui.api.ScaleTypes;
 //import virtuoel.pehkui.api.ScaleData;
 //import virtuoel.pehkui.api.ScaleType;
 //import virtuoel.pehkui.entity.ResizableEntity;
@@ -58,13 +58,12 @@ public abstract class MixinLivingEntity extends Entity {
 
     private void revertScale()
     {
-        PehkuiConfig pehconf = new PehkuiConfig();
         if ((Boolean)Optional.ofNullable((Boolean)PehkuiConfig.COMMON.keepAllScalesOnRespawn.get()).orElse(false)) {
                 int flooredSlime = (int) floor(this.getAttributeInstance(SLIME_SIZE).getValue());
                 if (flooredSlime != 0)
                 {
-                    ScaleType.HEIGHT.getScaleData(this).setScale(ScaleType.HEIGHT.getScaleData(this).getScale() * 2 * (3 - flooredSlime));
-                    ScaleType.WIDTH.getScaleData(this).setScale(ScaleType.WIDTH.getScaleData(this).getScale() * 2 * (3 - flooredSlime));
+                    ScaleTypes.HEIGHT.getScaleData(this).setScale(ScaleTypes.HEIGHT.getScaleData(this).getScale() * 2 * (3 - flooredSlime));
+                    ScaleTypes.WIDTH.getScaleData(this).setScale(ScaleTypes.WIDTH.getScaleData(this).getScale() * 2 * (3 - flooredSlime));
                 }
         }
     }
@@ -111,8 +110,8 @@ public abstract class MixinLivingEntity extends Entity {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 40, 5));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
 
-                    ScaleType.HEIGHT.getScaleData(this).setScale(ScaleType.HEIGHT.getScaleData(this).getScale()/2);
-                    ScaleType.WIDTH.getScaleData(this).setScale(ScaleType.WIDTH.getScaleData(this).getScale()/2);
+                    ScaleTypes.HEIGHT.getScaleData(this).setScale(ScaleTypes.HEIGHT.getScaleData(this).getScale()/2);
+                    ScaleTypes.WIDTH.getScaleData(this).setScale(ScaleTypes.WIDTH.getScaleData(this).getScale()/2);
 
                     cir.setReturnValue(true);
                     cir.cancel();
