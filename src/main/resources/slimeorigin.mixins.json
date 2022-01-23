@@ -1,8 +1,8 @@
 {
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.10",
   "package": "dev.jacksibley.slimeorigin.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinBlock",
     "MixinLivingEntity",
